@@ -1,10 +1,9 @@
 class Solution {
-public:
-    bool isPowerOfFour(int n) {
+    public boolean isPowerOfFour(int n) {
         if(n<0){
             return false;
         }
-        long num = 1;
+        Long num = Long.valueOf(1);
         while(num<=n){
             if(num==n){
                 return true;
@@ -13,4 +12,4 @@ public:
         }
         return false;
     }
-};
+}
