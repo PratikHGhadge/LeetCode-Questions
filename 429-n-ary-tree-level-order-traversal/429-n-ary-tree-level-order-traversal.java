@@ -19,24 +19,24 @@ class Node {
 
 class Solution { 
     public List<List<Integer>> levelOrder(Node root) {
-        List<List<Integer>> ans = new ArrayList<>();
-        if(root==null){
-            return ans;
-        }
+         List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
         Queue<Node> mq = new ArrayDeque<>();
-        mq.offer(root);
-        while(!mq.isEmpty()){ 
-            int size = mq.size();
-            List<Integer> temp = new ArrayList<>();
-            while(size>0){
-                root = mq.poll();
-                temp.add(root.val);
-                for(Node ch : root.children){
-                    mq.offer(ch);
-                }   
-                size--;
+        if(root == null) return ans;
+        mq.add(root);
+        Queue<Node> cq = new ArrayDeque<>();
+        while(mq.size()>0){
+            root = mq.remove();
+            temp.add(root.val);
+            for(Node ch : root.children){
+                cq.add(ch);
             }
-            ans.add(temp);
+            if(mq.size()==0){
+                mq = cq;
+                cq = new ArrayDeque();
+                ans.add(temp);
+                temp = new ArrayList<>();
+            }
         }
         return ans;
     }
