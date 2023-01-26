@@ -1,27 +1,21 @@
 class Solution {
     public String bestHand(int[] ranks, char[] suits) {
-        Map<Integer, Integer> rankMap = new HashMap<>();
-        Map<Character, Integer> suitsMap = new HashMap<>();
-        for(Integer temp : ranks){
-            rankMap.put(temp, rankMap.getOrDefault(temp, 0)+1);
-        }
-        for(Character temp1 : suits){
-            suitsMap.put(temp1, suitsMap.getOrDefault(temp1, 0)+1);
-        }
-        if(suitsMap.size()==1){
+        if(suits[0]==suits[1]&&suits[1]==suits[2]&&suits[2]==suits[3]&&suits[3]==suits[4]){
             return "Flush";
-        }  
-        for(Integer temp : ranks){
-            if(rankMap.get(temp)>=3){
-                return "Three of a Kind";
-            }
         }
+        int[] map = new int[14];
+        int maxF = 0;
         for(Integer temp : ranks){
-            if(rankMap.get(temp)>=2){
-                return "Pair";
-            }
+            map[temp]++;
+            maxF = Math.max(maxF, map[temp]);
         }
-        return "High Card";
+        if(maxF>=3){
+            return "Three of a Kind";
+        }else if(maxF>=2){
+            return "Pair";
+        }else {
+            return "High Card";
+        }
     }
 }
 
