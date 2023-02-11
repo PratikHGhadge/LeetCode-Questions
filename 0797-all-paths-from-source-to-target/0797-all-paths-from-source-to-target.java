@@ -1,19 +1,23 @@
 class Solution {
+    
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        List<List<Integer>> ans = new LinkedList();
-        List<Integer> current = new ArrayList();
-        current.add(0);
-        dfs(0,current,graph,graph.length-1,ans);
-        return ans; 
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        int src = 0;
+        int dest = graph.length-1;
+        current.add(src);
+        dfs(src, dest, graph, current, ans);
+        return ans;
     }
-    private void dfs(int src, List<Integer> current, int graph[][], int dest, List<List<Integer>> ans){
+    
+    public static void dfs(int src, int dest, int[][] graph, List<Integer> current, List<List<Integer>> ans){
         if(src == dest){
             ans.add(new ArrayList(current));
             return;
         }
-        for(int n : graph[src]){
-            current.add(n);
-            dfs(n,current,graph,dest,ans);
+        for(int vertex : graph[src]){
+            current.add(vertex);
+            dfs(vertex, dest, graph, current, ans);
             current.remove(current.size()-1);
         }
     }
