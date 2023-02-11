@@ -12,10 +12,8 @@ class Solution {
                 }
             }
         }
-        return count;
-        
+        return count;      
     }
-    
     public static void drawTreeForComponent(char[][] arr, int i, int j, boolean[][] visited) {
         if (i<0 || j<0 || i>=arr.length || j>=arr[0].length || visited[i][j]==true || arr[i][j]=='0'){
             return;
