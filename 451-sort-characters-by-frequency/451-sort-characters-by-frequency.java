@@ -1,25 +1,21 @@
 class Solution {
     public String frequencySort(String s) {
-        // Step 1: Count the frequency of each character
-        Map<Character, Integer> frequencyMap = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i<s.length(); i++){
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0)+1);
         }
-        
-        // Step 2: Create a max heap to sort characters by frequency
-        PriorityQueue<Character> maxHeap = new PriorityQueue<>((a, b) -> frequencyMap.get(b) - frequencyMap.get(a));
-        maxHeap.addAll(frequencyMap.keySet());
-        
-        // Step 3: Build the sorted string
-        StringBuilder sb = new StringBuilder();
-        while (!maxHeap.isEmpty()) {
-            char c = maxHeap.poll();
-            int frequency = frequencyMap.get(c);
-            for (int i = 0; i < frequency; i++) {
-                sb.append(c);
+        PriorityQueue<Map.Entry<Character, Integer>> pq = new PriorityQueue<>((a, b)->(b.getValue()-a.getValue()));
+        pq.addAll(map.entrySet());
+        StringBuilder ans = new StringBuilder();
+        while(!pq.isEmpty()){
+            Map.Entry<Character, Integer> head = pq.poll();
+            int freq = head.getValue();
+            char ch = head.getKey();
+            while(freq!=0){
+                ans.append(ch);
+                freq--;
             }
         }
-        
-        return sb.toString();
+        return ans.toString();
     }
 }
