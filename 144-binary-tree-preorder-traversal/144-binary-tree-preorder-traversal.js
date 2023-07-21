@@ -1,29 +1,24 @@
 /**
  * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
-class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<Integer>();
-        preorder(root, ans);
-        return ans;
-    }
-    
-    public void preorder(TreeNode root, List<Integer> ans){
-        if(root==null) return;
-        ans.add(root.val);
-        preorder(root.left, ans);
-        preorder(root.right, ans);
-    }
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root) {
+    let ans = [];
+    preorder(root, ans)
+    return ans
+};
+
+var preorder = function(root, ans){
+    if(root===null) return
+    ans.push(root.val)
+    preorder(root.left, ans)
+    preorder(root.right, ans)
 }
