@@ -3,10 +3,10 @@ class Solution {
         int i=0, j=s.length()-1;
         char[] arr = s.toCharArray();
         while(i<=j){
-            if(!((arr[i]>='a' && arr[i]<='z') || (arr[i]>='A' && arr[i]<='Z')) ){
+            if(!Character.isLetter(arr[i])){
                 i++;
                 continue;
-            }else if(!((arr[j]>='a' && arr[j]<='z') || (arr[j]>='A' && arr[j]<='Z')) ){
+            }else if(!Character.isLetter(arr[j])){
                 j--;
                 continue;
             }else{
